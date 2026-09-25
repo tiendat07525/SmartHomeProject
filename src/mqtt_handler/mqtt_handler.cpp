@@ -1,87 +1,60 @@
 #include "mqtt_handler.h"
-#include "config.h"
-#include "actuators/actuators.h"
-#include <WiFi.h>
-#include <PubSubClient.h>
-WiFiClient espClient;
-PubSubClient mqttClient(espClient);
-void connectWiFi(){
-    Serial.print("Connecting to WiFi");
-    WiFi.begin(WIFI_SSID);
-    while (WiFi.status() != WL_CONNECTED){
-        delay(500);
-        Serial.print(".");
+#include "../include/config.h"
+#include "../actuators/actuators.h"
+
+static WiFiClient espClient;
+static PubSubClient client(espClient);
+bool isNightMode = false;
+
+static void mqttCallback(char* topic, byte* payload, unsigned int length) {
+    String message;
+    for (unsigned int i = 0; i < length; i++) {
+        message += (char)payload[i];
     }
-    Serial.println();
-    Serial.println("WiFi connected!");
-    Serial.print("ESP32 IP: ");
-    Serial.println(WiFi.localIP());
+    Serial.printf("[MQTT] Nhận tin [%s]: %s\n", topic, message.c_str());
+
+    if (String(topic) == TOPIC_MODE) {
+        if (message == "NIGHT") {
+            isNightMode = true;
+            Serial.println("-> Chuyển sang CHẾ ĐỘ BAN ĐÊM");
+        } else {
+            isNightMode = false;
+            Serial.println("-> Chuyển sang CHẾ ĐỘ THƯỜNG");
+        }
+    }
 }
-void connectMQTT(){
-    while (!mqttClient.connected()){
-        Serial.print("Connecting to MQTT... ");
-        String clientId = "ESP32-SmartHome-";
-        clientId += String(random(0xffff), HEX);
-        if (mqttClient.connect(clientId.c_str())){
-            Serial.println("PASS");
-            mqttClient.subscribe(TOPIC_CONTROL_LIGHT);
-            mqttClient.subscribe(TOPIC_CONTROL_FAN);
-            mqttPublish(TOPIC_ACTUATOR_LIGHT, getLightState() ? "ON" : "OFF", true);
-            mqttPublish( TOPIC_ACTUATOR_FAN, getFanState() ? "ON" : "OFF", true);
-        } else{
-            Serial.print("FAILED, state=");
-            Serial.println(mqttClient.state());
+
+void initMQTT() {
+    client.setServer(MQTT_SERVER, MQTT_PORT);
+    client.setCallback(mqttCallback);
+}
+
+static void reconnect() {
+    while (!client.connected()) {
+        Serial.print("Đang kết nối MQTT Broker...");
+        if (client.connect(MQTT_CLIENT_ID)) {
+            Serial.println(" Thành công!");
+            client.subscribe(TOPIC_MODE);
+            client.subscribe(TOPIC_RELAY);
+        } else {
+            Serial.printf(" Thất bại, rc=%d. Thử lại sau 3s...\n", client.state());
             delay(3000);
         }
     }
 }
 
-void mqttCallback(char* topic, byte* payload, unsigned int length){
-    String message;
-    for (unsigned int i = 0; i < length; i++){
-        message += (char)payload[i];
+void handleMQTT() {
+    if (!client.connected()) {
+        reconnect();
     }
-    message.trim();
-    Serial.println();
-    Serial.println("========== MQTT COMMAND ==========");
-    Serial.print("Topic: ");
-    Serial.println(topic);
-    Serial.print("Message: ");
-    Serial.println(message);
-    Serial.println("==================================");
-    if (String(topic) == TOPIC_CONTROL_LIGHT){
-        if (message.equalsIgnoreCase("ON")){
-            setLight(true);
-        }
-        else if (message.equalsIgnoreCase("OFF")){
-            setLight(false);
-        }
-    }
-    if (String(topic) == TOPIC_CONTROL_FAN){
-        if (message.equalsIgnoreCase("ON")){
-            setFan(true);
-        }
-        else if (message.equalsIgnoreCase("OFF")){
-            setFan(false);
-        }
-    }
+    client.loop();
 }
-void mqttInit(){
-    connectWiFi();
-    mqttClient.setServer(MQTT_HOST, MQTT_PORT);
-    mqttClient.setCallback(mqttCallback);
-}
-void mqttLoop(){
-    if (!mqttClient.connected()){
-        connectMQTT();
-    }
-    mqttClient.loop();
-}
-bool mqttConnected(){
-    return mqttClient.connected();
-}
-void mqttPublish(const char* topic, const char* message,bool retained){
-    if (mqttClient.connected()){
-        mqttClient.publish(topic, message, retained);
-    }
+
+void publishTelemetry(float temp, float hum, int gas, int light, bool motion) {
+    if (!client.connected()) return;
+    char payload[128];
+    snprintf(payload, sizeof(payload), 
+        "{\"temp\":%.1f,\"hum\":%.1f,\"gas\":%d,\"lux\":%d,\"motion\":%d}",
+        temp, hum, gas, light, motion ? 1 : 0);
+    client.publish(TOPIC_TELEMETRY, payload);
 }

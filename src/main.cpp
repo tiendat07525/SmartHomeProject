@@ -1,251 +1,70 @@
 #include <Arduino.h>
-
+#include <WiFi.h>
 #include "config.h"
 #include "sensors/sensors.h"
 #include "actuators/actuators.h"
 #include "mqtt_handler/mqtt_handler.h"
 
-unsigned long lastSensorRead = 0;
+unsigned long lastSend = 0;
+unsigned long pirMotionTimer = 0;
 
-unsigned long lastMotionTime = 0;
-
-const float FAN_ON_TEMPERATURE = 30.0;
-
-void handleLightAutomation(
-    const SensorData& data
-)
-{
-    // Có người + trời tối
-    if (data.motion == HIGH && data.isDark)
-    {
-        lastMotionTime = millis();
-
-        if (!getLightState())
-        {
-            setLight(true);
-
-            mqttPublish(
-                TOPIC_ACTUATOR_LIGHT,
-                "ON",
-                true
-            );
-        }
-    }
-
-    // Không còn chuyển động
-    else if (data.motion == LOW)
-    {
-        if (getLightState() && millis() - lastMotionTime >= LIGHT_OFF_DELAY)
-        {
-            setLight(false);
-
-            mqttPublish(
-                TOPIC_ACTUATOR_LIGHT,
-                "OFF",
-                true
-            );
-        }
-    }
-}
-
-void publishSensorData(const SensorData& data)
-{
-    char buffer[20];
-
-    // Temperature
-    if (!isnan(data.temperature))
-    {
-        dtostrf(data.temperature, 1, 2, buffer);
-
-        mqttPublish(TOPIC_TEMPERATURE, buffer);
-    }
-
-    // Humidity
-    if (!isnan(data.humidity))
-    {
-        dtostrf(data.humidity, 1, 2, buffer);
-
-        mqttPublish(TOPIC_HUMIDITY, buffer);
-    }
-
-    // Motion
-    snprintf(
-        buffer,
-        sizeof(buffer),
-        "%d",
-        data.motion
-    );
-
-    mqttPublish(TOPIC_MOTION, buffer);
-
-    // Light
-    snprintf(
-        buffer,
-        sizeof(buffer),
-        "%d",
-        data.lightValue
-    );
-
-    mqttPublish(TOPIC_LIGHT, buffer);
-}
-
-void handleFanAutomation(
-    const SensorData& data
-)
-{
-    // Không điều khiển tự động nếu DHT22 lỗi
-    if (isnan(data.temperature))
-    {
-        return;
-    }
-
-    // Nhiệt độ >= 30°C → bật quạt
-    if (data.temperature >= FAN_ON_TEMPERATURE)
-    {
-        if (!getFanState())
-        {
-            setFan(true);
-
-            mqttPublish(
-                TOPIC_ACTUATOR_FAN,
-                "ON",
-                true
-            );
-        }
-    }
-
-    // Nhiệt độ < 30°C → tắt quạt
-    else
-    {
-        if (getFanState())
-        {
-            setFan(false);
-
-            mqttPublish(
-                TOPIC_ACTUATOR_FAN,
-                "OFF",
-                true
-            );
-        }
-    }
-}
-
-
-void printSensorData(
-    const SensorData& data
-)
-{
-    Serial.println();
-
-    Serial.println(
-        "========== SENSOR DATA =========="
-    );
-
-    Serial.print(
-        "PIR Motion: "
-    );
-
-    Serial.println(
-        data.motion
-    );
-
-    Serial.print(
-        "LDR Value: "
-    );
-
-    Serial.println(
-        data.lightValue
-    );
-
-    Serial.print(
-        "Dark: "
-    );
-
-    Serial.println(
-        data.isDark
-            ? "YES"
-            : "NO"
-    );
-
-    if (isnan(data.temperature) || isnan(data.humidity))
-    {
-        Serial.println("DHT22: READ ERROR");
-    }
-    else
-    {
-        Serial.print("Temperature: ");
-
-        Serial.print(data.temperature);
-
-        Serial.println(" °C");
-
-        Serial.print("Humidity: ");
-
-        Serial.print(data.humidity);
-
-        Serial.println(" %");
-    }
-
-    Serial.println("==================================");
-}
-
-
-void setup()
-{
+void setup() {
     Serial.begin(115200);
+    initSensors();
+    initActuators();
 
-    delay(1000);
+    WiFi.begin(WIFI_SSID, WIFI_PASS);
+    Serial.print("Đang kết nối Wi-Fi");
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println("\nWi-Fi đã kết nối! IP: " + WiFi.localIP().toString());
 
-    Serial.println();
-
-    Serial.println("==================================");
-
-    Serial.println(" SMART HOME IoT");
-
-    Serial.println(" MODULAR VERSION");
-
-    Serial.println("==================================");
-
-    // Sensors
-    sensorsInit();
-
-    // Actuators
-    actuatorsInit();
-
-    // MQTT + WiFi
-    mqttInit();
-
-    Serial.println();
-
-    Serial.println("System initialized.");
+    initMQTT();
 }
 
+void loop() {
+    handleMQTT();
+    SensorData s = readSensors();
 
-void loop()
-{
-    // MQTT
-    mqttLoop();
+    // 1. Logic Khói/Gas vượt ngưỡng -> Còi kêu
+    if (s.gas > GAS_THRESHOLD) {
+        setBuzzer(true);
+    } else {
+        setBuzzer(false);
+    }
 
-    // Sensor timer
-    unsigned long now = millis();
+    // 2. Logic Đèn chiếu sáng (Bình thường vs Chế độ Ban đêm)
+    if (isNightMode) {
+        // Chế độ ban đêm: Mặc định tắt, chỉ bật khi có chuyển động trong 5 giây[cite: 1]
+        if (s.motion) {
+            pirMotionTimer = millis();
+        }
+        if (millis() - pirMotionTimer < 5000 && pirMotionTimer > 0) {
+            setLightLed(true);
+        } else {
+            setLightLed(false);
+        }
+    } else {
+        // Chế độ thông thường: Trời tối tự động bật đèn
+        if (s.light > LDR_DARK_VAL) {
+            setLightLed(true);
+        } else {
+            setLightLed(false);
+        }
+    }
 
-    if (now - lastSensorRead >= SENSOR_INTERVAL)
-    {
-        lastSensorRead = now;
+    // 3. Logic Nhiệt độ vượt ngưỡng -> Bật LED cảnh báo (sau này thay bằng Motor)
+    if (!isnan(s.temperature) && s.temperature > TEMP_THRESHOLD) {
+        setTempAlertLed(true);
+    } else {
+        setTempAlertLed(false);
+    }
 
-        // Read sensors
-        SensorData data = readSensors();
-
-        // Serial
-        printSensorData(data);
-
-        // MQTT
-        publishSensorData(data);
-
-        // Automatic light
-        handleLightAutomation(data);
-
-        // Automatic fan
-        handleFanAutomation(data);
+    // Gửi dữ liệu cảm biến lên MQTT mỗi 2 giây[cite: 1]
+    if (millis() - lastSend > 2000) {
+        lastSend = millis();
+        publishTelemetry(s.temperature, s.humidity, s.gas, s.light, s.motion);
     }
 }

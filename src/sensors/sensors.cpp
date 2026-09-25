@@ -1,34 +1,22 @@
 #include "sensors.h"
-#include "config.h"
-
+#include "../include/config.h"
 #include <DHT.h>
 
-DHT dht(DHT_PIN, DHT_TYPE);
+static DHT dht(PIN_DHT, DHT22);
 
-void sensorsInit()
-{
-    pinMode(PIR_PIN, INPUT);
-    pinMode(LDR_PIN, INPUT);
-
+void initSensors() {
+    pinMode(PIN_MQ2, INPUT);
+    pinMode(PIN_LDR, INPUT);
+    pinMode(PIN_PIR, INPUT);
     dht.begin();
 }
 
-SensorData readSensors()
-{
+SensorData readSensors() {
     SensorData data;
-
-    // PIR
-    data.motion = digitalRead(PIR_PIN);
-
-    // LDR
-    data.lightValue = analogRead(LDR_PIN);
-
-    // DHT22
     data.temperature = dht.readTemperature();
     data.humidity = dht.readHumidity();
-
-    // Day / night
-    data.isDark = data.lightValue < LDR_THRESHOLD;
-
+    data.gas = analogRead(PIN_MQ2);
+    data.light = analogRead(PIN_LDR);
+    data.motion = digitalRead(PIN_PIR) == HIGH;
     return data;
 }

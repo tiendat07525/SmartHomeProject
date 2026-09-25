@@ -3,12 +3,10 @@
 
 #include <Arduino.h>
 
-void actuatorsInit();
-
-void setLight(bool state);
-bool getLightState();
-
-void setFan(bool state);
-bool getFanState();
+void initActuators();
+void setBuzzer(bool state);
+void setLightLed(bool state);
+void setTempAlertLed(bool state);
+void setRelay(int relayNum, bool state);
 
 #endif

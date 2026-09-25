@@ -3,19 +3,15 @@
 
 #include <Arduino.h>
 
-struct SensorData
-{
-    int motion;
-    int lightValue;
-
+struct SensorData {
     float temperature;
     float humidity;
-
-    bool isDark;
+    int gas;
+    int light;
+    bool motion;
 };
 
-void sensorsInit();
-
+void initSensors();
 SensorData readSensors();
 
 #endif

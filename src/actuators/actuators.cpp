@@ -1,72 +1,39 @@
-#include "actuators/actuators.h"
-#include "config.h"
+#include "actuators.h"
+#include "../include/config.h"
 
-bool lightState = false;
-bool fanState = false;
+void initActuators() {
+    pinMode(PIN_BUZZER, OUTPUT);
+    pinMode(PIN_LED_LIGHT, OUTPUT);
+    pinMode(PIN_LED_TEMP, OUTPUT);
+    pinMode(PIN_RELAY1, OUTPUT);
+    pinMode(PIN_RELAY2, OUTPUT);
 
-void writeRelay(
-    int pin,
-    bool state
-)
-{
-    if (RELAY_ACTIVE_HIGH)
-    {
-        digitalWrite(
-            pin,
-            state ? HIGH : LOW
-        );
+    // Mặc định tắt các cơ cấu chấp hành
+    digitalWrite(PIN_BUZZER, LOW);
+    digitalWrite(PIN_LED_LIGHT, LOW);
+    digitalWrite(PIN_LED_TEMP, LOW);
+    // Relay module kích mức LOW: HIGH là ngắt
+    digitalWrite(PIN_RELAY1, HIGH);
+    digitalWrite(PIN_RELAY2, HIGH);
+}
+
+void setBuzzer(bool state) {
+    if (state) {
+        tone(PIN_BUZZER, 1000); // Phát âm 1000Hz cảnh báo
+    } else {
+        noTone(PIN_BUZZER);
     }
-    else
-    {
-        digitalWrite(
-            pin,
-            state ? LOW : HIGH
-        );
-    }
 }
 
-void actuatorsInit()
-{
-    pinMode(RELAY_LIGHT_PIN, OUTPUT);
-
-    pinMode( RELAY_FAN_PIN, OUTPUT);
-
-    setLight(false);
-    setFan(false);
+void setLightLed(bool state) {
+    digitalWrite(PIN_LED_LIGHT, state ? HIGH : LOW);
 }
 
-void setLight(bool state)
-{
-    lightState = state;
-
-    writeRelay(RELAY_LIGHT_PIN, state);
-
-    Serial.print("LIGHT: ");
-
-    Serial.println(
-        state ? "ON" : "OFF"
-    );
+void setTempAlertLed(bool state) {
+    digitalWrite(PIN_LED_TEMP, state ? HIGH : LOW);
 }
 
-bool getLightState()
-{
-    return lightState;
-}
-
-void setFan(bool state)
-{
-    fanState = state;
-
-    writeRelay(RELAY_FAN_PIN, state);
-
-    Serial.print("FAN: ");
-
-    Serial.println(
-        state ? "ON" : "OFF"
-    );
-}
-
-bool getFanState()
-{
-    return fanState;
+void setRelay(int relayNum, bool state) {
+    int pin = (relayNum == 1) ? PIN_RELAY1 : PIN_RELAY2;
+    digitalWrite(pin, state ? LOW : HIGH); // Active LOW[cite: 1]
 }

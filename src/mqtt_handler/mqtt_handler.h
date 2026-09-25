@@ -1,18 +1,13 @@
 #ifndef MQTT_HANDLER_H
 #define MQTT_HANDLER_H
 
-#include <Arduino.h>
+#include <PubSubClient.h>
+#include <WiFi.h>
 
-void mqttInit();
+extern bool isNightMode;
 
-void mqttLoop();
-
-bool mqttConnected();
-
-void mqttPublish(
-    const char* topic,
-    const char* message,
-    bool retained = false
-);
+void initMQTT();
+void handleMQTT();
+void publishTelemetry(float temp, float hum, int gas, int light, bool motion);
 
 #endif
