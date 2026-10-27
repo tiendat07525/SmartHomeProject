@@ -1,6 +1,8 @@
 #include "actuators.h"
 #include "../include/config.h"
 
+static bool currentBuzzerState = false;
+
 void initActuators() {
     pinMode(PIN_BUZZER, OUTPUT);
     pinMode(PIN_LED_LIGHT, OUTPUT);
@@ -9,7 +11,7 @@ void initActuators() {
     pinMode(PIN_RELAY2, OUTPUT);
 
     // Mặc định tắt các cơ cấu chấp hành
-    digitalWrite(PIN_BUZZER, LOW);
+    digitalWrite(PIN_BUZZER, HIGH);
     digitalWrite(PIN_LED_LIGHT, LOW);
     digitalWrite(PIN_LED_TEMP, LOW);
     // Relay module kích mức LOW: HIGH là ngắt
@@ -18,10 +20,17 @@ void initActuators() {
 }
 
 void setBuzzer(bool state) {
+    if (state == currentBuzzerState) {
+        return; // Trạng thái không đổi -> thoát sớm
+    }
+    
+    currentBuzzerState = state; // CẬP NHẬT TRẠNG THÁI HIỆN TẠI
+
     if (state) {
-        tone(PIN_BUZZER, 1000); // Phát âm 1000Hz cảnh báo
+        tone(PIN_BUZZER, 100); // Phát âm 1000Hz cảnh báo
     } else {
         noTone(PIN_BUZZER);
+        digitalWrite(PIN_BUZZER, state ? LOW : HIGH); // Đảm bảo tắt hoàn toàn chân GPIO
     }
 }
 

@@ -2,7 +2,7 @@
 #include "../include/config.h"
 #include <DHT.h>
 
-static DHT dht(PIN_DHT, DHT22);
+static DHT dht(PIN_DHT, DHT11);
 
 void initSensors() {
     pinMode(PIN_MQ2, INPUT);
@@ -15,8 +15,11 @@ SensorData readSensors() {
     SensorData data;
     data.temperature = dht.readTemperature();
     data.humidity = dht.readHumidity();
+
     data.gas = analogRead(PIN_MQ2);
-    data.light = analogRead(PIN_LDR);
-    data.motion = digitalRead(PIN_PIR) == HIGH;
+    data.lux = analogRead(PIN_LDR);
+    data.isDark = (data.lux > LDR_DARK_THRESHOLD);
+    data.motion = (digitalRead(PIN_PIR) == HIGH);
     return data;
+
 }

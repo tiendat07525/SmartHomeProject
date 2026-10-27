@@ -1,116 +1,45 @@
-```cpp
+// =====================================================================
+// config.example.h — FILE MẪU, được commit lên git.
+// Cách dùng: copy thành include/config.h rồi điền giá trị thật.
+//   Linux/macOS: cp include/config.example.h include/config.h
+//   Windows    : copy include\config.example.h include\config.h
+// include/config.h đã nằm trong .gitignore — KHÔNG commit file đó.
+// Tên hằng ở đây phải khớp 1-1 với config.h mà code đang dùng.
+// =====================================================================
 #ifndef CONFIG_H
 #define CONFIG_H
 
-// =====================================================
-// GPIO
-// =====================================================
+// ---------------- Wi-Fi ----------------
+// Wokwi: SSID "Wokwi-GUEST", mật khẩu rỗng.
+#define WIFI_SSID       "Wokwi-GUEST"
+#define WIFI_PASS       ""
 
-#define PIR_PIN 27
+// ---------------- MQTT ----------------
+// Broker local (docker compose trong backend/): IP máy chạy Docker trong LAN.
+// Wokwi không truy cập được IP LAN -> dùng broker công cộng hoặc tunnel.
+#define MQTT_SERVER     "YOUR_MQTT_HOST"   // vd: "192.168.1.10" hoặc "broker.hivemq.com"
+#define MQTT_PORT       1883
+#define MQTT_CLIENT_ID  "ESP32_SmartHome_Client"
 
-#define LDR_PIN 34
+// ---------------- MQTT Topics ----------------
+#define TOPIC_TELEMETRY "smarthome/telemetry"
+#define TOPIC_MODE      "smarthome/mode"          // Nhận lệnh: "NORMAL" hoặc "NIGHT"
+#define TOPIC_RELAY     "smarthome/relay/control" // Nhận lệnh: "R1:ON", "R1:OFF", "R2:ON", "R2:OFF"
 
-#define DHT_PIN 4
-#define DHT_TYPE DHT22
+// ---------------- GPIO ----------------
+#define PIN_MQ2         35  // ADC1
+#define PIN_LDR         34  // ADC1
+#define PIN_DHT         4
+#define PIN_PIR         27
+#define PIN_BUZZER      14
+#define PIN_LED_LIGHT   18  // Đèn chiếu sáng (Cyan)
+#define PIN_LED_TEMP    21  // Đèn cảnh báo nhiệt (Vàng) — LƯU Ý: diagram.json đang nối LED vàng vào GPIO19
+#define PIN_RELAY1      26
+#define PIN_RELAY2      25
 
-#define RELAY_LIGHT_PIN 26
-#define RELAY_FAN_PIN 25
-
-#define LED_1_PIN 19
-#define LED_2_PIN 18
-
-
-// =====================================================
-// WIFI
-// =====================================================
-
-// Wokwi virtual Wi-Fi network
-#define WIFI_SSID "Wokwi-GUEST"
-
-// Nếu Wi-Fi yêu cầu mật khẩu, khai báo tại đây.
-// Để trống nếu sử dụng Wokwi-GUEST.
-#define WIFI_PASSWORD ""
-
-
-// =====================================================
-// MQTT
-// =====================================================
-
-// Thay bằng MQTT Broker của bạn.
-//
-// Ví dụ:
-// #define MQTT_HOST "broker.hivemq.com"
-// #define MQTT_PORT 1883
-//
-// Hoặc broker/server riêng:
-// #define MQTT_HOST "your-mqtt-broker.example.com"
-// #define MQTT_PORT 1883
-
-#define MQTT_HOST "YOUR_MQTT_HOST"
-#define MQTT_PORT 1883
-
-// Nếu MQTT Broker yêu cầu tài khoản:
-// #define MQTT_USERNAME "YOUR_MQTT_USERNAME"
-// #define MQTT_PASSWORD "YOUR_MQTT_PASSWORD"
-
-
-// =====================================================
-// SENSOR TOPICS
-// =====================================================
-
-#define TOPIC_TEMPERATURE "smarthome/sensor/temperature"
-
-#define TOPIC_HUMIDITY "smarthome/sensor/humidity"
-
-#define TOPIC_MOTION "smarthome/sensor/motion"
-
-#define TOPIC_LIGHT "smarthome/sensor/light"
-
-
-// =====================================================
-// CONTROL TOPICS
-// =====================================================
-
-#define TOPIC_CONTROL_LIGHT "smarthome/control/light"
-
-#define TOPIC_CONTROL_FAN "smarthome/control/fan"
-
-
-// =====================================================
-// ACTUATOR TOPICS
-// =====================================================
-
-#define TOPIC_ACTUATOR_LIGHT "smarthome/actuator/light"
-
-#define TOPIC_ACTUATOR_FAN "smarthome/actuator/fan"
-
-
-// =====================================================
-// AUTOMATION
-// =====================================================
-
-// Ngưỡng ánh sáng của LDR
-#define LDR_THRESHOLD 2000
-
-// Thời gian chờ trước khi tắt đèn
-// Đơn vị: milliseconds
-#define LIGHT_OFF_DELAY 10000
-
-// Chu kỳ đọc cảm biến
-// Đơn vị: milliseconds
-#define SENSOR_INTERVAL 5000
-
-
-// =====================================================
-// RELAY CONFIGURATION
-// =====================================================
-
-// Relay trong mô phỏng Wokwi hiện tại:
-// HIGH = ON
-// LOW  = OFF
-
-#define RELAY_ACTIVE_HIGH true
-
+// ---------------- Ngưỡng ----------------
+#define TEMP_THRESHOLD      35.0  // °C
+#define GAS_THRESHOLD       100   // ADC 0-4095 (bridge đang dùng 1800 — chưa thống nhất)
+#define LDR_DARK_THRESHOLD  2000  // ADC > ngưỡng => tối
 
 #endif
-```

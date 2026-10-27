@@ -7,7 +7,8 @@ struct SensorData {
     float temperature;
     float humidity;
     int gas;
-    int light;
+    int lux;
+    bool isDark;
     bool motion;
 };
 
