@@ -1,0 +1,1248 @@
+[
+    {
+        "id": "95b1b320bd6c350d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b0ee7619b32186f4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "021966e37f9bfcc9",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-custom",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#1f2829",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#1c1c1c",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#4B7930",
+                    "value": "#1c1c1c",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#1c1c1c",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#934343",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#dbdbdb",
+                    "edited": true
+                },
+                "group-borderColor": {
+                    "value": "#1c1c1c",
+                    "edited": true
+                },
+                "group-backgroundColor": {
+                    "value": "#616161",
+                    "edited": true
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#dedede",
+                    "edited": true
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "true",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "1df247f37e6ecb26",
+        "type": "ui_tab",
+        "name": "Theo doi",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": true
+    },
+    {
+        "id": "598ae6d398bd5750",
+        "type": "ui_group",
+        "name": "SmartHome",
+        "tab": "1df247f37e6ecb26",
+        "order": 1,
+        "disp": true,
+        "width": 27,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "93f920a776137e0a",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 1,
+        "width": 27,
+        "height": 1
+    },
+    {
+        "id": "ac23de9fdfb519fe",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "0f9745cc2913a64e",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7e24cfa960cb9cdd",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "980dc1b2e1d56463",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4f79dcc513954b4d",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "dc235c20f3df0146",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "73a2281f49ffd1e8",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3d0ab4e3e4e61cc5",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4eb38cc3e94cf7c1",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 14,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4c93dd155e9c2e6d",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 15,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "28481053b5fd4b2d",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7613a9089bb7a614",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 18,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "77ee2e9fd0bd5441",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 19,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "35bcd1bed98c3071",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 21,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "034b2fab465cc3f5",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 22,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "c5ef6e6adff787cd",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 23,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "307082652d46c69a",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 24,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "73e2f1ad8d9691c7",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 25,
+        "width": 7,
+        "height": 1
+    },
+    {
+        "id": "0b7207fda3e3d06d",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 26,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a450d83acb4c197f",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 27,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "a1b228f550bd19b3",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 28,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "af7a307c17785f81",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 29,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "a5c030b29b1fcb54",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 30,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a1c242356cd69782",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 32,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "87a0bd4400c0ddaf",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 34,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e3266da15aeae5b3",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 35,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8ed68636f8a269af",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8f784145205a2efd",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 37,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "27919470a13fa1e1",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 38,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "04da4c78454fdf05",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 39,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "122ffba7c03c1bd0",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 40,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "32b878578b60cc17",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 41,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "a2760923b3b8fa8a",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 42,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c7983d1d79365e02",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 43,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e890da8a91c1df1c",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 44,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c84e9e43e94fd0c0",
+        "type": "ui_spacer",
+        "z": "95b1b320bd6c350d",
+        "name": "spacer",
+        "group": "598ae6d398bd5750",
+        "order": 45,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "cea262ca70c9702d",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "Influx local",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": "20",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "1ce0bb1f9b05d345",
+        "type": "inject",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "home/livingroom/sensor",
+        "payload": "{\"temperature\":25,\"humidity\":72,\"light\":50,\"motion\":true}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "12ae2830ce88cc8c"
+            ]
+        ]
+    },
+    {
+        "id": "12ae2830ce88cc8c",
+        "type": "function",
+        "z": "95b1b320bd6c350d",
+        "name": "Process Data",
+        "func": "let data = msg.payload;\n\n// Lấy dữ liệu cảm biến\nlet temperature = data.temperature;\nlet humidity = data.humidity;\nlet light = data.light;\nlet motion = data.motion;\n\n// Kiểm tra nhiệt độ\nlet fan = false;\n\nif (temperature >= 30) {\n    fan = true;\n}\n\n// Kiểm tra ánh sáng + chuyển động\nlet lightStatus = false;\n\nif (light < 100 && motion === true) {\n    lightStatus = true;\n}\n\n// Tạo dữ liệu sau khi xử lý\nmsg.payload = {\n    temperature: temperature,\n    humidity: humidity,\n    light: light,\n    motion: motion,\n    fan: fan,\n    lightStatus: lightStatus\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 480,
+        "wires": [
+            [
+                "86c98a5b0adc22d8",
+                "75fff590b2357395",
+                "46bf172265b4daf9",
+                "13a10f85c6705c61",
+                "885b655384aa361e",
+                "bdd1651eedce5fac",
+                "7b538060035680e8",
+                "ec557ff770c561dd"
+            ]
+        ]
+    },
+    {
+        "id": "86c98a5b0adc22d8",
+        "type": "switch",
+        "z": "95b1b320bd6c350d",
+        "name": " fan control",
+        "property": "payload.fan",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 650,
+        "y": 480,
+        "wires": [
+            [
+                "649e71725b672d81"
+            ],
+            [
+                "cb646598f00e65a3"
+            ]
+        ]
+    },
+    {
+        "id": "75fff590b2357395",
+        "type": "switch",
+        "z": "95b1b320bd6c350d",
+        "name": " light control",
+        "property": "payload.lightStatus",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 900,
+        "wires": [
+            [
+                "4714c3ee9c1785aa"
+            ],
+            [
+                "613592dce1830253"
+            ]
+        ]
+    },
+    {
+        "id": "df2fa7a3d5318f02",
+        "type": "ui_gauge",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "group": "598ae6d398bd5750",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#fafafa",
+            "#ffffff",
+            "#ffffff"
+        ],
+        "seg1": "20",
+        "seg2": "30",
+        "diff": false,
+        "className": "",
+        "x": 1090,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "46bf172265b4daf9",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "get temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 740,
+        "wires": [
+            [
+                "df2fa7a3d5318f02",
+                "820e5327eedfb405"
+            ]
+        ]
+    },
+    {
+        "id": "d5d561a367a1ac92",
+        "type": "ui_gauge",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "group": "598ae6d398bd5750",
+        "order": 4,
+        "width": 6,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ffffff",
+            "#ffffff",
+            "#ffffff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "13a10f85c6705c61",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "get humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 840,
+        "wires": [
+            [
+                "d5d561a367a1ac92"
+            ]
+        ]
+    },
+    {
+        "id": "885b655384aa361e",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "get light",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.light",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 600,
+        "wires": [
+            [
+                "a0a3c65677f4cf3f"
+            ]
+        ]
+    },
+    {
+        "id": "a0a3c65677f4cf3f",
+        "type": "ui_gauge",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "group": "598ae6d398bd5750",
+        "order": 20,
+        "width": 12,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Light",
+        "label": "lux",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#ffffff",
+            "#ffffff",
+            "#ffffff"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1070,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cf231b407a7ef4eb",
+        "type": "ui_switch",
+        "z": "95b1b320bd6c350d",
+        "name": "fan",
+        "label": "Fan ",
+        "tooltip": "",
+        "group": "598ae6d398bd5750",
+        "order": 6,
+        "width": 6,
+        "height": 3,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "btn-fan",
+        "x": 1070,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff3f5730f2e00f1b",
+        "type": "ui_switch",
+        "z": "95b1b320bd6c350d",
+        "name": "light",
+        "label": "Light",
+        "tooltip": "",
+        "group": "598ae6d398bd5750",
+        "order": 7,
+        "width": 6,
+        "height": 3,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "btn-light",
+        "x": 1190,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "649e71725b672d81",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "Fan ON",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 440,
+        "wires": [
+            [
+                "cf231b407a7ef4eb"
+            ]
+        ]
+    },
+    {
+        "id": "cb646598f00e65a3",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "Fan Off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 520,
+        "wires": [
+            [
+                "cf231b407a7ef4eb"
+            ]
+        ]
+    },
+    {
+        "id": "4714c3ee9c1785aa",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "LIght ON",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 920,
+        "wires": [
+            [
+                "ff3f5730f2e00f1b"
+            ]
+        ]
+    },
+    {
+        "id": "613592dce1830253",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "Light Off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1000,
+        "wires": [
+            [
+                "ff3f5730f2e00f1b"
+            ]
+        ]
+    },
+    {
+        "id": "6e8b7924ae941f15",
+        "type": "mqtt in",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "topic": "home/livingroom/sensor",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "b0ee7619b32186f4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "809c03b1c03a1e39"
+            ]
+        ]
+    },
+    {
+        "id": "809c03b1c03a1e39",
+        "type": "json",
+        "z": "95b1b320bd6c350d",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "12ae2830ce88cc8c"
+            ]
+        ]
+    },
+    {
+        "id": "820e5327eedfb405",
+        "type": "ui_chart",
+        "z": "95b1b320bd6c350d",
+        "name": "Temp History",
+        "group": "598ae6d398bd5750",
+        "order": 31,
+        "width": 12,
+        "height": 5,
+        "label": "Temp History",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "50",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1090,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bdd1651eedce5fac",
+        "type": "change",
+        "z": "95b1b320bd6c350d",
+        "name": "Get Motion",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.motion",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 680,
+        "wires": [
+            [
+                "078b93902ea7619c"
+            ]
+        ]
+    },
+    {
+        "id": "078b93902ea7619c",
+        "type": "ui_text",
+        "z": "95b1b320bd6c350d",
+        "group": "598ae6d398bd5750",
+        "order": 17,
+        "width": 6,
+        "height": 3,
+        "name": "Motion Status",
+        "label": "Motion",
+        "format": " <span class=\"motion-badge\" ng-class=\"{true:'motion-on', false:'motion-off'}[msg.payload]\"><span class=\"motion-dot\"></span>{{msg.payload ? 'Có chuyển động' : 'Không có chuyển động'}}</span>",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1100,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "eee69b696c5c8113",
+        "type": "ui_template",
+        "z": "95b1b320bd6c350d",
+        "group": "598ae6d398bd5750",
+        "name": "",
+        "order": 46,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    /* =========================================================\n       SMART HOME - LIQUID GLASS (nền ảnh + nút dạng tile)\n       ========================================================= */\n\n    /* 1. Nền trang chính */\n    body {\n        background:\n            linear-gradient(180deg, rgba(5, 8, 15, 0.15), rgba(5, 8, 15, 0.3)),\n            url('https://images.unsplash.com/photo-1642447260162-8d52ac4348ad?fm=jpg&q=70&w=2400&auto=format&fit=crop') center / cover no-repeat fixed !important;\n        font-family: Arial, Helvetica, sans-serif !important;\n    }\n\n    /* 2. Ép các lớp trung gian trong suốt, không viền */\n    .nr-dashboard-theme .nr-dashboard-group,\n    .nr-dashboard-theme .nr-dashboard-cardpanel,\n    .nr-dashboard-theme ui-card-panel,\n    .nr-dashboard-theme .nr-dashboard-page,\n    .nr-dashboard-theme md-content,\n    .nr-dashboard-theme .md-content,\n    .nr-dashboard-theme md-tab-content,\n    .nr-dashboard-theme md-tabs-content-wrapper,\n    .nr-dashboard-theme [layout],\n    .nr-dashboard-theme .layout-row,\n    .nr-dashboard-theme .layout-column {\n        background-color: transparent !important;\n        background: transparent !important;\n        border: none !important;\n        box-shadow: none !important;\n    }\n\n    /* =========================================================\n       3. KHUNG BAO NGOÀI (kính mờ, không viền, không hover)\n       ========================================================= */\n    .nr-dashboard-theme .nr-dashboard-cardcontainer {\n        background: rgba(255, 255, 255, 0.035) !important;\n        backdrop-filter: blur(18px) saturate(200%) !important;\n        -webkit-backdrop-filter: blur(18px) saturate(200%) !important;\n        border: none !important;\n        border-radius: 36px !important;\n        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;\n        padding: 24px !important;\n        transform: none !important;\n        transition: none !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-cardcontainer:hover {\n        transform: none !important;\n        border: none !important;\n        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;\n    }\n\n    /* Tiêu đề & chữ màu trắng */\n    .nr-dashboard-theme .nr-dashboard-group md-toolbar,\n    .nr-dashboard-theme md-card>md-toolbar {\n        background: transparent !important;\n        color: #ffffff !important;\n        box-shadow: none !important;\n        border: none !important;\n    }\n\n    .nr-dashboard-theme p.nr-dashboard-cardtitle {\n        color: #ffffff !important;\n        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);\n        font-size: 20px !important;\n        font-weight: 700 !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-widget .sublabel,\n    .nr-dashboard-theme .nr-dashboard-widget span,\n    .nr-dashboard-theme .nr-dashboard-widget div {\n        color: rgba(255, 255, 255, 0.85) !important;\n    }\n\n    /* =========================================================\n       4. CÁC Ô WIDGET CON (giữ hiệu ứng hover)\n       ========================================================= */\n    .nr-dashboard-theme md-card {\n        background: rgba(255, 255, 255, 0.045) !important;\n        backdrop-filter: blur(14px) saturate(190%) !important;\n        -webkit-backdrop-filter: blur(14px) saturate(190%) !important;\n        border: 1px solid rgba(255, 255, 255, 0.14) !important;\n        border-radius: 22px !important;\n        box-shadow:\n            0 10px 30px rgba(0, 0, 0, 0.2),\n            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;\n        overflow: hidden !important;\n        color: rgba(255, 255, 255, 0.95) !important;\n        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;\n        transform: translateY(0) !important;\n    }\n\n    .nr-dashboard-theme md-card:hover {\n        transform: translateY(-3px) !important;\n        border-color: rgba(255, 255, 255, 0.4) !important;\n        box-shadow:\n            0 15px 35px rgba(0, 0, 0, 0.3),\n            0 0 15px rgba(255, 255, 255, 0.1),\n            inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;\n    }\n\n    /* Tile đang BẬT: kính sáng hơn một chút */\n    .nr-dashboard-theme md-card:has(md-switch.md-checked) {\n        background: rgba(255, 255, 255, 0.10) !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-widget .label {\n        color: rgba(255, 255, 255, 0.9) !important;\n        font-size: 15px !important;\n        font-weight: 600 !important;\n    }\n\n    /* Biểu đồ, Gauge */\n    .nr-dashboard-theme .nr-dashboard-gauge,\n    .nr-dashboard-theme .nr-dashboard-chart,\n    .nr-dashboard-theme .nr-dashboard-template {\n        background: transparent !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-gauge text,\n    .nr-dashboard-theme .nr-dashboard-chart text {\n        fill: rgba(255, 255, 255, 0.9) !important;\n        font-weight: 700 !important;\n    }\n\n    /* =========================================================\n       5. SWITCH DẠNG TILE: icon góc trên-trái, toggle pill góc trên-phải,\n          tên nằm góc dưới-trái (giống ảnh tham khảo)\n       ========================================================= */\n    /* LƯU Ý: class .nr-dashboard-switch nằm ngay trên thẻ md-card,\n       nên KHÔNG được đổi position/display/background ở đây\n       (md-card đã tự có vị trí tuyệt đối do Node-RED tính) */\n\n    /* Icon (mặc định = mặt trời, dùng cho nút Light) */\n    .nr-dashboard-theme .nr-dashboard-switch::before {\n        content: \"\";\n        position: absolute;\n        top: 18px;\n        left: 20px;\n        width: 30px;\n        height: 30px;\n        background: url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2048%2048%27%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%272.6%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2724%27%20cy%3D%2724%27%20r%3D%278%27%2F%3E%3Cpath%20d%3D%27M37%2024H41M33.2%2033.2L36%2036M24%2037V41M14.8%2033.2L12%2036M11%2024H7M14.8%2014.8L12%2012M24%2011V7M33.2%2014.8L36%2012%27%2F%3E%3C%2Fsvg%3E\") center / contain no-repeat;\n        opacity: 0.8;\n        pointer-events: none;\n        transition: opacity 0.25s ease, filter 0.25s ease;\n    }\n\n    /* Icon quạt cho nút có class \"btn-fan\" (gắn ở ô Class của node Fan).\n       Viết cả 2 dạng vì class có thể nằm trên chính md-card hoặc thẻ bọc ngoài */\n    .nr-dashboard-theme .nr-dashboard-switch.btn-fan::before,\n    .nr-dashboard-theme .btn-fan .nr-dashboard-switch::before {\n        background-image: url(\"data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2048%2048%27%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%272.4%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2724%27%20cy%3D%2724%27%20r%3D%272.4%27%2F%3E%3Ccircle%20cx%3D%2724%27%20cy%3D%2724%27%20r%3D%275.6%27%2F%3E%3Cpath%20d%3D%27M21.4%2018.7C19.2%2015.7%2017.4%2012%2018.2%2010C19%208.4%2025%208%2027.5%2010.4C29.6%2012.4%2028.4%2016%2026.2%2018.8%27%2F%3E%3Cpath%20transform%3D%27rotate%28120%2024%2024%29%27%20d%3D%27M21.4%2018.7C19.2%2015.7%2017.4%2012%2018.2%2010C19%208.4%2025%208%2027.5%2010.4C29.6%2012.4%2028.4%2016%2026.2%2018.8%27%2F%3E%3Cpath%20transform%3D%27rotate%28240%2024%2024%29%27%20d%3D%27M21.4%2018.7C19.2%2015.7%2017.4%2012%2018.2%2010C19%208.4%2025%208%2027.5%2010.4C29.6%2012.4%2028.4%2016%2026.2%2018.8%27%2F%3E%3Cpath%20d%3D%27M6.1%2017.5A19%2019%200%200%201%2017.5%206.1%27%2F%3E%3Cpath%20d%3D%27M38.6%2011.8A19%2019%200%200%201%2042.7%2027.3%27%2F%3E%3Cpath%20d%3D%27M27.3%2042.7A19%2019%200%200%201%2011.8%2038.6%27%2F%3E%3C%2Fsvg%3E\");\n    }\n\n    /* Icon sáng rõ hơn khi BẬT */\n    .nr-dashboard-theme .nr-dashboard-switch:has(md-switch.md-checked)::before {\n        opacity: 1;\n        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55));\n    }\n\n    /* Tên thiết bị: góc dưới-trái */\n    .nr-dashboard-theme .nr-dashboard-switch .label {\n        position: absolute !important;\n        left: 20px !important;\n        bottom: 16px !important;\n        margin: 0 !important;\n        font-size: 16px !important;\n        font-weight: 600 !important;\n        text-align: left !important;\n        color: rgba(255, 255, 255, 0.95) !important;\n    }\n\n    /* Toggle: góc trên-phải */\n    .nr-dashboard-theme .nr-dashboard-switch md-switch {\n        position: absolute !important;\n        top: 18px !important;\n        right: 20px !important;\n        width: auto !important;\n        height: auto !important;\n        min-width: 0 !important;\n        margin: 0 !important;\n        padding: 0 !important;\n        background: none !important;\n        border: none !important;\n        border-radius: 0 !important;\n        display: block !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-switch md-switch .md-label {\n        display: none !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-switch md-switch .md-container {\n        display: block !important;\n        position: relative !important;\n        float: none !important;\n        width: 48px !important;\n        height: 28px !important;\n        margin: 0 !important;\n    }\n\n    /* Track: OFF = trong suốt có viền, ON = sáng */\n    .nr-dashboard-theme .nr-dashboard-switch md-switch .md-bar {\n        position: absolute !important;\n        left: 0 !important;\n        top: 0 !important;\n        width: 48px !important;\n        height: 28px !important;\n        box-sizing: border-box !important;\n        border-radius: 999px !important;\n        background: transparent !important;\n        border: 1.5px solid rgba(255, 255, 255, 0.65) !important;\n        opacity: 1 !important;\n        transition: background 0.25s ease, border-color 0.25s ease !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-switch md-switch.md-checked .md-bar {\n        background: rgba(255, 255, 255, 0.55) !important;\n        border-color: rgba(255, 255, 255, 0.55) !important;\n    }\n\n    /* Nút tròn trắng */\n    .nr-dashboard-theme .nr-dashboard-switch md-switch .md-thumb-container {\n        display: block !important;\n        position: absolute !important;\n        top: 3px !important;\n        left: 3px !important;\n        width: 20px !important;\n        height: 22px !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-switch md-switch.md-checked .md-thumb-container {\n        transform: translate3d(20px, 0, 0) !important;\n    }\n\n    .nr-dashboard-theme .nr-dashboard-switch md-switch .md-thumb,\n    .nr-dashboard-theme .nr-dashboard-switch md-switch.md-checked .md-thumb {\n        display: block !important;\n        left: 0 !important;\n        top: 0 !important;\n        width: 22px !important;\n        height: 22px !important;\n        border-radius: 50% !important;\n        background: #ffffff !important;\n        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;\n    }\n\n    /* =========================================================\n       6. GIỮ LẠI CÁC PHẦN CŨ: Motion badge + chữ footer\n       ========================================================= */\n    .motion-badge {\n        display: inline-flex !important;\n        align-items: center !important;\n        gap: 8px !important;\n        padding: 5px 16px !important;\n        border-radius: 999px !important;\n        font-weight: 700 !important;\n        font-size: 14px !important;\n    }\n\n    .motion-on {\n        background: rgba(255, 255, 255, 0.18) !important;\n        color: #e7e7e7ff !important;\n    }\n\n    .motion-off {\n        background: rgba(0, 0, 0, 0.06) !important;\n        color: rgba(0, 0, 0, 0.5) !important;\n    }\n\n    .motion-dot {\n        width: 8px;\n        height: 8px;\n        border-radius: 50%;\n        background: #a7a7a7ff;\n        display: inline-block;\n        flex-shrink: 0;\n    }\n\n    .motion-off .motion-dot {\n        background: rgba(255, 255, 255, 0.35);\n    }\n\n    .motion-on .motion-dot {\n        animation: motionBlink 1s infinite;\n    }\n\n    @keyframes motionBlink {\n\n        0%,\n        100% {\n            opacity: 1;\n            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);\n        }\n\n        50% {\n            opacity: 0.3;\n            box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);\n        }\n    }\n\n    .smart-home-header {\n        padding: 18px 22px;\n    }\n\n    .home-title {\n        color: #ffffff !important;\n        font-size: 28px;\n        font-weight: 800;\n        letter-spacing: -0.5px;\n    }\n\n    .home-subtitle {\n        margin-top: 5px;\n        color: #ffffff !important;\n        font-size: 14px;\n        font-weight: 500;\n    }\n\n    /* =========================================================\n       7. Ô ẢNH (node template có chứa class \"photo-tile\")\n       ========================================================= */\n    .nr-dashboard-theme md-card:has(.photo-tile) {\n        background:\n            linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%),\n            url('https://images.unsplash.com/photo-1642447260162-8d52ac4348ad?fm=jpg&q=70&w=1600&auto=format&fit=crop') 88% 55% / cover no-repeat !important;\n        border: 1px solid rgba(255, 255, 255, 0.25) !important;\n    }\n\n    .photo-tile {\n        display: block;\n        width: 100%;\n        height: 100%;\n    }\n\n    .photo-caption {\n        position: absolute;\n        left: 18px;\n        bottom: 16px;\n        padding: 6px 14px;\n        border-radius: 999px;\n        background: rgba(255, 255, 255, 0.18);\n        backdrop-filter: blur(10px);\n        -webkit-backdrop-filter: blur(10px);\n        border: 1px solid rgba(255, 255, 255, 0.3);\n        color: #ffffff !important;\n        font-size: 14px;\n        font-weight: 600;\n        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);\n    }\n\n    /* Scrollbar */\n    ::-webkit-scrollbar {\n        width: 6px;\n    }\n\n    ::-webkit-scrollbar-track {\n        background: transparent;\n    }\n\n    ::-webkit-scrollbar-thumb {\n        background: rgba(255, 255, 255, 0.15);\n        border-radius: 10px;\n    }\n\n    ::-webkit-scrollbar-thumb:hover {\n        background: rgba(255, 255, 255, 0.25);\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 1100,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5805df880907d4df",
+        "type": "ui_template",
+        "z": "95b1b320bd6c350d",
+        "group": "598ae6d398bd5750",
+        "name": "anh",
+        "order": 33,
+        "width": 12,
+        "height": "5",
+        "format": "<div class=\"photo-tile\">\n    <span class=\"photo-caption\">My Home</span>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 950,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b538060035680e8",
+        "type": "function",
+        "z": "95b1b320bd6c350d",
+        "name": "Format for influx",
+        "func": "msg.payload = [\n    {\n        temperature: Number(msg.payload.temperature),\n        humidity: Number(msg.payload.humidity),\n        light: Number(msg.payload.light),\n        motion: msg.payload.motion ? 1 : 0\n    },\n    {\n        location: \"living_room\"\n    }\n];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "6f3344ad1e491e68",
+                "1d2037211ae48bda"
+            ]
+        ]
+    },
+    {
+        "id": "6f3344ad1e491e68",
+        "type": "influxdb out",
+        "z": "95b1b320bd6c350d",
+        "influxdb": "cea262ca70c9702d",
+        "name": "",
+        "measurement": "smart_home_sensors",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "5f1c55a1fd67c473",
+        "bucket": "sensors",
+        "x": 970,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "1d2037211ae48bda",
+        "type": "debug",
+        "z": "95b1b320bd6c350d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ec557ff770c561dd",
+        "type": "debug",
+        "z": "95b1b320bd6c350d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "943b75bec34bd3ba",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-influxdb": "0.7.0"
+        }
+    }
+]
