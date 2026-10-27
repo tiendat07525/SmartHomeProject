@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  # 1. MQTT Broker
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: iot_mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/data:/mosquitto/data
+    networks:
+      - iot_net
+
+  # 2. Time-Series DB (Lưu temp, hum, gas, lux, motion)
+  influxdb:
+    image: influxdb:2.7-alpine
+    container_name: iot_influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpassword123
+      - DOCKER_INFLUXDB_INIT_ORG=iot_home
+      - DOCKER_INFLUXDB_INIT_BUCKET=sensors_telemetry
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token-12345
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    networks:
+      - iot_net
+
+  # 3. Document DB (Lưu events, alerts, users, logs)
+  mongodb:
+    image: mongo:7.0
+    container_name: iot_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secretpassword
+      MONGO_INITDB_DATABASE: iot_db
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - iot_net
+
+  # 4. Worker trung chuyển MQTT -> InfluxDB & MongoDB
+  iot-bridge:
+    image: node:20-alpine
+    container_name: iot_bridge
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./bridge:/app
+    environment:
+      MQTT_URL: "mqtt://mqtt-broker:1883"
+      INFLUX_URL: "http://influxdb:8086"
+      INFLUX_TOKEN: "my-super-secret-auth-token-12345"
+      INFLUX_ORG: "iot_home"
+      INFLUX_BUCKET: "sensors_telemetry"
+      MONGO_URI: "mongodb://admin:secretpassword@mongodb:27017/iot_db?authSource=admin"
+    command: sh -c "npm install && node bridge.js"
+    depends_on:
+      - mqtt-broker
+      - influxdb
+      - mongodb
+    networks:
+      - iot_net
+
+volumes:
+  mongo_data:
+  influxdb_data:
+
+networks:
+  iot_net:
+    driver: bridge
